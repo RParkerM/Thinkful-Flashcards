@@ -40,8 +40,7 @@ function DeckInfoCard({ name, description, id, cards, handleDeleteDeck }) {
           <Link
             to={`/decks/${id}`}
             className={classNames({
-              btn: true,
-              "btn-secondary": true,
+              "btn btn-secondary": true,
               disabled: !name,
             })}
             aria-disabled={!name}
@@ -50,8 +49,7 @@ function DeckInfoCard({ name, description, id, cards, handleDeleteDeck }) {
           </Link>
           <Link
             className={classNames({
-              btn: true,
-              "btn-primary": true,
+              "btn btn-primary": true,
               disabled: !name,
             })}
             to={`/decks/${id}/study`}
@@ -60,11 +58,7 @@ function DeckInfoCard({ name, description, id, cards, handleDeleteDeck }) {
             <i className='bi bi-book'></i> Study
           </Link>
           <button
-            className={classNames({
-              btn: true,
-              "btn-danger": true,
-              "delete-deck": true,
-            })}
+            className='btn btn-danger delete-deck'
             onClick={() => handleDeleteDeck(id)}
             aria-disabled={!name}
             disabled={!name}

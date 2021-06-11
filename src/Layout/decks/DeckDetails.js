@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, useParams, useHistory, useRouteMatch } from "react-router-dom";
 import { readDeck, deleteDeck, deleteCard } from "../../utils/api";
+import classNames from "../../utils/class-names";
 import NotFound from "../NotFound";
 import CardList from "./CardList";
 
-//TODO:  Skeleton name for Nav
 //TODO: Skeleton header
 //TODO: Skeleton description
 //TODO: Disable buttons/links until loaded
@@ -18,18 +18,20 @@ function DeckDetails() {
   const { url } = useRouteMatch();
   const history = useHistory();
 
-  async function getDeckDetails() {
+  const navName = name ? name : "View Deck";
+
+  const getDeckDetails = useCallback(async () => {
     try {
       const deck = await readDeck(deckId);
       setDeckInfo(deck);
     } catch (error) {
       setDeckInfo({ name: "Not Found" });
     }
-  }
+  }, [deckId]);
+
   useEffect(() => {
     getDeckDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deckId]);
+  }, [deckId, getDeckDetails]);
 
   async function deleteHandler(id) {
     if (
@@ -63,25 +65,51 @@ function DeckDetails() {
             </Link>
           </li>
           <li className='breadcrumb-item active' aria-current='page'>
-            {name}
+            {navName}
           </li>
         </ol>
       </nav>
-      <h3>{name}</h3>
-      <p>{description}</p>
+      <h3 className={classNames({ "animated-bg animated-bg-text": !name })}>
+        {name}
+      </h3>
+      <p className={classNames({ "animated-bg animated-bg-text": !name })}>
+        {description}
+      </p>
       <div className='deck-card-buttons'>
-        <Link className='btn btn-secondary' to={`${url}/edit`}>
+        <Link
+          className={classNames({
+            btn: true,
+            "btn-secondary": true,
+            disabled: !name,
+          })}
+          to={`${url}/edit`}
+        >
           <i className='bi bi-pencil-fill'></i> Edit
         </Link>
-        <Link className='btn btn-primary' to={`${url}/study`}>
+        <Link
+          className={classNames({
+            btn: true,
+            "btn-primary": true,
+            disabled: !name,
+          })}
+          to={`${url}/study`}
+        >
           <i className='bi bi-book'></i> Study
         </Link>
-        <Link className='btn btn-primary' to={`${url}/cards/new`}>
+        <Link
+          className={classNames({
+            btn: true,
+            "btn-primary": true,
+            disabled: !name,
+          })}
+          to={`${url}/cards/new`}
+        >
           <i className='bi bi-plus-lg'></i> Add Cards
         </Link>
         <button
           className='btn btn-danger delete-deck'
           onClick={handleDeleteDeck}
+          disabled={!name}
         >
           <i className='bi bi-trash'></i>
         </button>

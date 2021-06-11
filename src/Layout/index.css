@@ -48,6 +48,10 @@ header.jumbotron {
   margin-bottom: 10px;
 }
 
+h3.animated-bg-text {
+  height: 1.75rem;
+}
+
 @keyframes bgPos {
   0% {
     background-position: 50% 0;
