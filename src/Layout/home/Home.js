@@ -38,7 +38,11 @@ function Home() {
   }
 
   const rows = decks.map((deck) => DeckInfoCard({ ...deck, handleDeleteDeck }));
-  rows.push(<DeckInfoCard handleDeleteDeck={() => {}} />);
+  if (rows.length < 1) {
+    for (let i = 0; i < 3; i++) {
+      rows.push(<DeckInfoCard key={i} />);
+    }
+  }
   return (
     <>
       <div className='row'>

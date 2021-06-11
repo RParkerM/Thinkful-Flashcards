@@ -20,12 +20,12 @@ function DeckInfoCard({ name, description, id, cards, handleDeleteDeck }) {
   //Skeleton text before loading
   const skeletonText = <p className='animated-bg animated-bg-text'>{nbsp}</p>;
   const content = description ? (
-    description
+    <p className='card-text'>{description}</p>
   ) : (
-    <>
+    <div className='card-text'>
       {skeletonText}
       {skeletonText}
-    </>
+    </div>
   );
 
   return (
@@ -35,7 +35,7 @@ function DeckInfoCard({ name, description, id, cards, handleDeleteDeck }) {
           {title}
           <p className='card-subtitle text-muted'>{cardLength}</p>
         </div>
-        <p className='card-text'>{content}</p>
+        {content}
         <div className='deck-card-buttons'>
           <Link
             to={`/decks/${id}`}
