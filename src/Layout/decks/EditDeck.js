@@ -60,19 +60,11 @@ function EditDeck() {
         <ol className='breadcrumb'>
           <li className='breadcrumb-item'>
             <Link to='/'>
-              {
-                //TODO: Change links to history.push, so we don't need to re-render??
-              }
               <i className='bi bi-house-door-fill'></i> Home
             </Link>
           </li>
           <li className='breadcrumb-item'>
-            <Link to={`/decks/${deckId}`}>
-              {
-                //TODO: Change links to history.push, so we don't need to re-render??
-              }
-              {deck.name}
-            </Link>
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
           <li className='breadcrumb-item active' aria-current='page'>
             Edit Deck

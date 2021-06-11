@@ -32,7 +32,6 @@ function StudyDeck() {
   }, [deckId]);
 
   function handleNext() {
-    //TODO: handle clicking next
     if (cardId >= deck.cards.length - 1) {
       if (window.confirm("Restart cards?")) {
         setCardId(0);

@@ -8,7 +8,6 @@ function CreateDeck() {
   function handleSubmit(deck) {
     const abortController = new AbortController();
 
-
     async function callCreateDeck() {
       try {
         const deckInfo = await createDeck(deck, abortController.signal);
@@ -37,9 +36,6 @@ function CreateDeck() {
         <ol className='breadcrumb'>
           <li className='breadcrumb-item'>
             <Link to='/'>
-              {
-                //TODO: Change links to history.push, so we don't need to re-render??
-              }
               <i className='bi bi-house-door-fill'></i> Home
             </Link>
           </li>
