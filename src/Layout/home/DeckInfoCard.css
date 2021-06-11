@@ -24,6 +24,11 @@
   width: 100%;
 }
 
+.animated-bg-text.card-title {
+  height: 20px;
+  margin-bottom: 10px;
+}
+
 @keyframes bgPos {
   0% {
     background-position: 50% 0;
