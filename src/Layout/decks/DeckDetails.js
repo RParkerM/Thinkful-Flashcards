@@ -21,6 +21,7 @@ function DeckDetails() {
   }
   useEffect(() => {
     getDeckDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckId]);
 
   async function deleteHandler(id) {

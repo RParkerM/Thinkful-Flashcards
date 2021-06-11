@@ -11,8 +11,8 @@
       "id": 2
     },
     {
-      "name": "Test",
-      "description": "Decks",
+      "name": "Testing",
+      "description": "Yep",
       "id": 3
     }
   ],
@@ -46,18 +46,6 @@
       "back": "Renders the first matching child <Route> ",
       "deckId": 2,
       "id": 5
-    },
-    {
-      "front": "Test555",
-      "back": "TWo",
-      "deckId": 3,
-      "id": 7
-    },
-    {
-      "front": "35",
-      "back": "3",
-      "deckId": 3,
-      "id": 8
     }
   ]
 }
