@@ -1,10 +1,17 @@
 import React from "react";
 import CardDetails from "./CardDetails";
+import CardDetailsSkeleton from "./CardDetailsSkeleton";
 
 function CardList({ deck, deleteHandler }) {
-  const rows = deck.cards?.map((card) =>
+  let rows = deck.cards?.map((card) =>
     CardDetails({ ...card, deckId: deck.id, deleteHandler })
   );
+  if (!rows || rows.length < 1) {
+    rows = [];
+    for (let i = 0; i < 3; i++) {
+      rows.push(<CardDetailsSkeleton key={i} />);
+    }
+  }
 
   return (
     <>

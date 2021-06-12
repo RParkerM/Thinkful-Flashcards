@@ -14,8 +14,10 @@ function DeckDetails() {
   const { url } = useRouteMatch();
   const history = useHistory();
 
+  //Set placeholder for deck name before it's loaded
   const navName = name ? name : "View Deck";
 
+  //Loads deck information. If deck isn't found, display not found
   const getDeckDetails = useCallback(async () => {
     try {
       const deck = await readDeck(deckId);
@@ -25,10 +27,13 @@ function DeckDetails() {
     }
   }, [deckId]);
 
+  //Load deck information on any change to deck id.
+  //getDeckDetails is required as a dependancy since it is defined outside useEffect
   useEffect(() => {
     getDeckDetails();
   }, [deckId, getDeckDetails]);
 
+  //Deletes card and re-loads deck information
   async function deleteHandler(id) {
     if (
       window.confirm("Delete this card?\n\nYou will not be able to recover it.")
@@ -41,6 +46,7 @@ function DeckDetails() {
   //Handle incorrect deckId
   if (name === "Not Found") return <NotFound />;
 
+  //Deletes deck and goes back to home page
   async function handleDeleteDeck() {
     if (
       window.confirm("Delete this deck?\n\nYou will not be able to recover it.")
@@ -50,7 +56,6 @@ function DeckDetails() {
     }
   }
 
-  //TODO: Skeleton animation
   return (
     <div>
       <nav aria-label='breadcrumb'>

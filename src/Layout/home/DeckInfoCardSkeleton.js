@@ -19,16 +19,24 @@ function SkeletonInfoCard() {
           {skeletonText}
         </div>
         <div className='deck-card-buttons'>
-          <button className='btn btn-secondary disabled' aria-disabled={true}>
+          <button
+            className='btn btn-secondary disabled'
+            aria-disabled={true}
+            disabled
+          >
             <i className='bi bi-eye-fill'></i> View
           </button>
-          <button className='btn btn-primary disabled' aria-disabled={true}>
+          <button
+            className='btn btn-primary disabled'
+            aria-disabled={true}
+            disabled
+          >
             <i className='bi bi-book'></i> Study
           </button>
           <button
-            className='btn btn-danger delete-deck'
+            className='btn btn-danger delete-deck disabled'
             aria-disabled={true}
-            disabled={true}
+            disabled
           >
             <i className='bi bi-trash'></i>
           </button>

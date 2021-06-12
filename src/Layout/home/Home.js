@@ -58,7 +58,10 @@ function Home() {
           <i className='bi bi-plus-lg'></i> Create Deck
         </Link>
       </div>
-      <div className='row my-4'>{rows}</div>
+      <div className='row my-4'>
+        <SkeletonInfoCard />
+        {rows}
+      </div>
     </>
   );
 }
