@@ -23,6 +23,9 @@ header.jumbotron {
 .card {
   width: 100%;
 }
+.card:hover {
+  transform: scale(1.01);
+}
 .animated-bg {
   background-image: linear-gradient(
     to right,

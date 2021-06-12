@@ -5,10 +5,6 @@ import classNames from "../../utils/class-names";
 import NotFound from "../NotFound";
 import CardList from "./CardList";
 
-//TODO: Skeleton header
-//TODO: Skeleton description
-//TODO: Disable buttons/links until loaded
-
 //TODO: Skeleton cards before loading
 
 function DeckDetails() {

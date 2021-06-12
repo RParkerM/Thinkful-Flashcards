@@ -6,6 +6,8 @@ import SkeletonInfoCard from "./DeckInfoCardSkeleton";
 
 function Home() {
   const [decks, setDecks] = useState([]);
+
+  //Loads deck information. Triggers a re-render when they are loaded
   useEffect(() => {
     setDecks([]);
     const abortController = new AbortController();
@@ -29,6 +31,7 @@ function Home() {
     };
   }, []);
 
+  //Deletes a deck and triggers a re-render with the deck removed
   async function handleDeleteDeck(id) {
     if (
       window.confirm("Delete this deck?\n\nYou will not be able to recover it.")
@@ -38,12 +41,16 @@ function Home() {
     }
   }
 
+  //Maps decks to JSX elements
   const rows = decks.map((deck) => DeckInfoCard({ ...deck, handleDeleteDeck }));
+
+  //If there are no decks, add skeleton deck cards
   if (rows.length < 1) {
     for (let i = 0; i < 3; i++) {
       rows.push(<SkeletonInfoCard key={i} />);
     }
   }
+
   return (
     <>
       <div className='row'>

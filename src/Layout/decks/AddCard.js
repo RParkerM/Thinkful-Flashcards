@@ -29,26 +29,16 @@ function AddCard() {
     return () => abortController.abort();
   }, [deckId]);
 
-  function handleSubmit(card) {
-    const abortController = new AbortController();
-
-    async function callCreateCard() {
-      try {
-        await createCard(deckId, card, abortController.signal);
-      } catch (err) {
-        if (err.name === "AbortError") {
-          console.info("aborted");
-        } else {
-          throw err;
-        }
-      }
+  //Creates a new card
+  async function handleSubmit(card) {
+    try {
+      await createCard(deckId, card);
+    } catch (err) {
+      throw err;
     }
-    callCreateCard();
-
-    return () => {
-      abortController.abort();
-    };
   }
+
+  //Returns to deck details screen
   function handleCancel() {
     history.push(`/decks/${deckId}`);
   }
