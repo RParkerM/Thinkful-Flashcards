@@ -49,7 +49,7 @@ function Home() {
   //Before loading, add skeleton deck info cards
   if (!loaded) {
     for (let i = 0; i < 3; i++) {
-      rows.push(<SkeletonInfoCard key={i} />);
+      rows.push(<SkeletonInfoCard key={i + 10} />);
     }
   }
 

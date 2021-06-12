@@ -7,7 +7,7 @@ import AddCard from "./AddCard";
 import EditCard from "./EditCard";
 import StudyDeck from "./StudyDeck";
 
-function Deck() {
+function DeckRoutes() {
   const { url } = useRouteMatch();
 
   return (
@@ -37,4 +37,4 @@ function Deck() {
   );
 }
 
-export default Deck;
+export default DeckRoutes;

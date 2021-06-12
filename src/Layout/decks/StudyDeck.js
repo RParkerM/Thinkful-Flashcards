@@ -3,12 +3,17 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import FlashCard from "./FlashCard";
 import { readDeck } from "../../utils/api/index";
 import NotEnoughCards from "./NotEnoughCards";
+import FlashCardSkeleton from "./FlashCardSkeleton";
 
 function StudyDeck() {
   const history = useHistory();
   const { deckId } = useParams();
   const [deck, setDeck] = useState({ cards: [] });
   const [cardId, setCardId] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+
+  //Set placeholder deck name before loading
+  const name = deck.name ? deck.name : "Deck Name";
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -17,6 +22,7 @@ function StudyDeck() {
       try {
         const deckInfo = await readDeck(deckId, abortController.signal);
         setDeck(deckInfo);
+        setLoaded(true);
       } catch (error) {
         if (error.name === "AbortError") {
           console.log("aborted");
@@ -49,6 +55,7 @@ function StudyDeck() {
     ) : (
       <NotEnoughCards deck={deck} />
     );
+  const content = loaded ? flashCards : <FlashCardSkeleton />;
 
   return (
     <div>
@@ -60,15 +67,15 @@ function StudyDeck() {
             </Link>
           </li>
           <li className='breadcrumb-item'>
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            <Link to={`/decks/${deckId}`}>{name}</Link>
           </li>
           <li className='breadcrumb-item active' aria-current='page'>
             Study
           </li>
         </ol>
       </nav>
-      <h1>{deck.name}: Study</h1>
-      {flashCards}
+      <h1>{name}: Study</h1>
+      {content}
     </div>
   );
 }
