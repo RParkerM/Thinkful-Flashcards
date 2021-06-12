@@ -22,7 +22,7 @@ function EditCard() {
         setDeck(deckInfo);
       } catch (error) {
         if (error.name === "AbortError") {
-          console.log("aborted");
+          console.info("aborted");
         } else {
           throw error;
         }
@@ -36,7 +36,7 @@ function EditCard() {
         setCard(cardInfo);
       } catch (error) {
         if (error.name === "AbortError") {
-          console.log("aborted");
+          console.info("aborted");
         } else {
           throw error;
         }

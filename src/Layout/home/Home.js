@@ -20,7 +20,7 @@ function Home() {
         setLoaded(true);
       } catch (error) {
         if (error.name === "AbortError") {
-          console.log("Aborted");
+          console.info("Aborted");
         } else {
           throw error;
         }
@@ -28,7 +28,7 @@ function Home() {
     }
     loadDecks();
     return () => {
-      console.log("aborting");
+      console.info("aborting");
       abortController.abort();
     };
   }, []);

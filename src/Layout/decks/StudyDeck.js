@@ -25,7 +25,7 @@ function StudyDeck() {
         setLoaded(true);
       } catch (error) {
         if (error.name === "AbortError") {
-          console.log("aborted");
+          console.info("aborted");
         } else {
           throw error;
         }

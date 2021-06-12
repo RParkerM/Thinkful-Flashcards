@@ -48,10 +48,22 @@
       "id": 5
     },
     {
-      "front": "Testings",
-      "back": "Test",
-      "deckId": 1,
+      "front": "Test",
+      "back": "yep",
+      "deckId": 3,
       "id": 6
+    },
+    {
+      "front": "Card 2",
+      "back": "Card 2",
+      "deckId": 3,
+      "id": 7
+    },
+    {
+      "front": "3",
+      "back": "3",
+      "deckId": 3,
+      "id": 8
     }
   ]
 }
