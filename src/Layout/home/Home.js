@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DeckInfoCard from "./DeckInfoCard";
 import { listDecks, deleteDeck } from "../../utils/api/index";
+import SkeletonInfoCard from "./DeckInfoCardSkeleton";
 
 function Home() {
   const [decks, setDecks] = useState([]);
@@ -40,7 +41,7 @@ function Home() {
   const rows = decks.map((deck) => DeckInfoCard({ ...deck, handleDeleteDeck }));
   if (rows.length < 1) {
     for (let i = 0; i < 3; i++) {
-      rows.push(<DeckInfoCard key={i} />);
+      rows.push(<SkeletonInfoCard key={i} />);
     }
   }
   return (
