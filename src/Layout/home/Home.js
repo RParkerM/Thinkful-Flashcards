@@ -6,6 +6,7 @@ import SkeletonInfoCard from "./DeckInfoCardSkeleton";
 
 function Home() {
   const [decks, setDecks] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   //Loads deck information. Triggers a re-render when they are loaded
   useEffect(() => {
@@ -16,6 +17,7 @@ function Home() {
       try {
         let _decks = await listDecks(abortController.signal);
         setDecks(_decks);
+        setLoaded(true);
       } catch (error) {
         if (error.name === "AbortError") {
           console.log("Aborted");
@@ -44,8 +46,8 @@ function Home() {
   //Maps decks to JSX elements
   const rows = decks.map((deck) => DeckInfoCard({ ...deck, handleDeleteDeck }));
 
-  //If there are no decks, add skeleton deck cards
-  if (rows.length < 1) {
+  //Before loading, add skeleton deck info cards
+  if (!loaded) {
     for (let i = 0; i < 3; i++) {
       rows.push(<SkeletonInfoCard key={i} />);
     }
@@ -58,10 +60,7 @@ function Home() {
           <i className='bi bi-plus-lg'></i> Create Deck
         </Link>
       </div>
-      <div className='row my-4'>
-        <SkeletonInfoCard />
-        {rows}
-      </div>
+      <div className='row my-4'>{rows}</div>
     </>
   );
 }

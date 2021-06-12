@@ -6,7 +6,9 @@ function CardList({ deck, deleteHandler }) {
   let rows = deck.cards?.map((card) =>
     CardDetails({ ...card, deckId: deck.id, deleteHandler })
   );
-  if (!rows || rows.length < 1) {
+
+  //If there are no cards, add skeleton cards
+  if (!deck.name) {
     rows = [];
     for (let i = 0; i < 3; i++) {
       rows.push(<CardDetailsSkeleton key={i} />);
