@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import CardForm from "./CardForm";
 import { createCard, readDeck } from "../../utils/api/index";
+import "./AddCard.css";
 
 function AddCard() {
   const history = useHistory();
@@ -33,6 +34,7 @@ function AddCard() {
   async function handleSubmit(card) {
     try {
       await createCard(deckId, card);
+      showCardSuccessToast();
     } catch (err) {
       throw err;
     }
@@ -41,6 +43,12 @@ function AddCard() {
   //Returns to deck details screen
   function handleCancel() {
     history.push(`/decks/${deckId}`);
+  }
+
+  function showCardSuccessToast() {
+    const toast = document.querySelector(".card-toast");
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2500);
   }
 
   return (
@@ -61,6 +69,7 @@ function AddCard() {
         </ol>
       </nav>
       <h1>{deck.name}: Add Card</h1>
+      <div className='card-toast alert alert-success hidden'>Card Added!</div>
       <CardForm handleSubmit={handleSubmit} handleCancel={handleCancel} />
     </div>
   );
